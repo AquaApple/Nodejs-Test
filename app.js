@@ -1,7 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const {userRouter} = require("./routes/user.routes")
+const {authMiddleware} = require("./Middlewares/auth")
 const app = express();
 
+//Middleware
+app.use(express.json())
+app.use(authMiddleware)
+app.use(userRouter)
 
 
 //Connect DB & Listen For server
